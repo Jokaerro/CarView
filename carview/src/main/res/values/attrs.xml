@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CarView">
+        <attr name="drawableCar" format="reference" />
+        <attr name="wayPointColor" format="reference|color" />
+        <attr name="positionX" format="integer" />
+        <attr name="positionY" format="integer" />
+    </declare-styleable>
+</resources>
