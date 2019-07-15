@@ -10,6 +10,7 @@ import android.graphics.Paint.Style.STROKE
 import android.animation.*
 import android.support.v7.content.res.AppCompatResources
 import android.view.MotionEvent
+import android.widget.Toast
 
 
 class CarView : View {
@@ -106,10 +107,14 @@ class CarView : View {
     private fun moveToNewPoint(x: Float, y: Float) {
         touchX = x
         touchY = y
-        wayPoint = WayPoint(PointF(currentX, currentY), PointF(x, y))
-        animation?.cancel()
-        animation = createAnimator(getAngle(PointF(x, y)))
-        animation?.start()
+        if (currentX != x && currentY != y) {
+            wayPoint = WayPoint(PointF(currentX, currentY), PointF(x, y))
+            animation?.cancel()
+            animation = createAnimator(getAngle(PointF(x, y)))
+            animation?.start()
+        } else {
+            Toast.makeText(context, resources.getString(R.string.finishMessage), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun createAnimator(angle: Float): AnimatorSet {
